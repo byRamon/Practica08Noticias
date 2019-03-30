@@ -17,5 +17,7 @@ namespace Practica08Noticias.Models
         [ForeignKey("Categoria")]
         public int CategoriaID { get; set; }
         public virtual Categorias Categoria { get; set; }
+
+        public string Usuario { get; set; }
     }
 }

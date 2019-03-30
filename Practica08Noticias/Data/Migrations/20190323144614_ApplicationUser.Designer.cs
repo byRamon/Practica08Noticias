@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Practica08Noticias.Data;
 
 namespace Practica08Noticias.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190323144614_ApplicationUser")]
+    partial class ApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,7 +135,7 @@ namespace Practica08Noticias.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Practica08Noticias.Data.ApplicationUser", b =>
+            modelBuilder.Entity("Practica08Noticias.Data.AplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -218,8 +220,6 @@ namespace Practica08Noticias.Data.Migrations
                     b.Property<string>("Titulo")
                         .IsRequired();
 
-                    b.Property<string>("Usuario");
-
                     b.HasKey("NoticiaID");
 
                     b.HasIndex("CategoriaID");
@@ -237,7 +237,7 @@ namespace Practica08Noticias.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Practica08Noticias.Data.ApplicationUser")
+                    b.HasOne("Practica08Noticias.Data.AplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -245,7 +245,7 @@ namespace Practica08Noticias.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Practica08Noticias.Data.ApplicationUser")
+                    b.HasOne("Practica08Noticias.Data.AplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -258,7 +258,7 @@ namespace Practica08Noticias.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Practica08Noticias.Data.ApplicationUser")
+                    b.HasOne("Practica08Noticias.Data.AplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -266,7 +266,7 @@ namespace Practica08Noticias.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Practica08Noticias.Data.ApplicationUser")
+                    b.HasOne("Practica08Noticias.Data.AplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

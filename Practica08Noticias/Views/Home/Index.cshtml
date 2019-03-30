@@ -1,8 +1,33 @@
-﻿@{
+﻿@model IEnumerable<Practica08Noticias.Models.Noticias>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    @if (Model.Count() > 0)
+    {
+        var item = @Model.ElementAt(0);
+        <a class="card-link text-dark" asp-area="" asp-controller="Noticias" asp-action="Details" asp-route-id="@item.NoticiaID">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">@item.Titulo</h1>
+                    <p class="lead">@item.Contenido</p>
+                </div>
+            </div>
+        </a>
+     }
+    <div class="card-columns">
+    @for (int ind = 1; ind < Model.Count(); ind++)
+    {
+        var item = @Model.ElementAt(ind);
+        <div class="card pt-3">
+            <div class="card-body">
+                <h1 class="display-4">@item.Titulo</h1>
+                <p class="lead">@item.Contenido</p>
+                <a class="card-link" asp-area="" asp-controller="Noticias" asp-action="Details" asp-route-id="@item.NoticiaID">Detalles</a>
+                @*<a href="#" class="card-link">Another link</a>*@
+            </div>
+            <div class="card-footer">Autor: @item.Usuario</div>
+        </div>
+    }
+    </div>
+  <footer></footer>
